@@ -19,13 +19,13 @@ class ProductController extends Controller
             return response()->json(['error' => 'Shop not found or does not belong to the user'], 404);
         }
 
-        $product = $shop->products;
+        $products = $shop->products;
 
-        if ($product->isEmpty()) {
-            return response()->json(['message' => 'No products found for this shop', 'user' => $shop], 200);
+        if ($products->isEmpty()) {
+            return response()->json(['message' => 'No products found for this shop'], 200);
         }
 
-        return response()->json(['product' => $product], 200);
+        return response()->json(['product' => $products], 200);
     }
 
     /**
@@ -47,11 +47,10 @@ class ProductController extends Controller
             return response()->json(['error' => $validator->errors()], 422);
         }
 
-        $authenticatedUserId = $request->user()->id;
+        // $authenticatedUserId = $request->user()->id;
 
 
         $shop = $request->user()->shops()->find($shop_id);
-
         if (!$shop) {
             return response()->json(['error' => 'Shop not found or does not belong to the user'], 404);
         }
@@ -66,7 +65,7 @@ class ProductController extends Controller
             's_price' => $request->s_price
         ]);
 
-        return response()->json(['success' => 'Product created successfully', 'product' => $product, 'user' => $authenticatedUserId], 200);
+        return response()->json(['success' => 'Product created successfully', 'product' => $product], 200);
     }
 
     /**
@@ -142,4 +141,6 @@ class ProductController extends Controller
 
         return response()->json(['success' => 'Product deleted successfully'], 200);
     }
+
+
 }

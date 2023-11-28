@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Party;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -35,5 +36,10 @@ class Shop extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function prod_categories()
+    {
+        return $this->hasMany(ProductCategory::class);
     }
 }

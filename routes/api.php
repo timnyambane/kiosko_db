@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\ShopsController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('/shop/{shop_id}')->group(function () {
         Route::resource('/parties', PartyController::class);
         Route::resource('/products', ProductController::class);
-        Route::resource('/products-category', ProductController::class);
+        Route::resource('/products-category', ProductCategoryController::class);
     });
 
 });
